@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo1</title>
+</head>
+
+<body style="width: 100vw; height: 100vh;">
+    <div id="app">
+        <div class="container">
+            <div class="title">
+                Image cropper
+            </div>
+            <form>
+                <div class="content" id="content">
+                    <input type="file" id="avatar" class="file-input" accept="image/x-png,image/jpeg" />
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<link href="../dist//image-cropper.umd.css" rel="stylesheet" type="text/css" />
+<script src="../dist/image-cropper.umd.js"></script>
+<script>
+    const aa = new ImageCropper("avatar")
+    window.aa = aa
+</script>
+<style>
+    #app {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .container {
+        margin: 20px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .title {
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .content {}
+
+    .file-label {
+        cursor: pointer;
+        margin-top: 15px;
+        padding: 10px;
+        background-color: green;
+        color: white;
+        box-shadow: #000 1px 1px 5px;
+    }
+
+    .file-input {
+        display: none;
+    }
+</style>
+
+</html>
