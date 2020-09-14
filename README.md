@@ -21,6 +21,8 @@ Template html like that:
 Use like that:
 
 ```typescript
+import { ImageCropper } from '@dongnguyen/image-cropper'
+
 const inputFileId = 'avatar';
 const imageCropperInstance = new ImageCropper(inputFileId);
 ```
