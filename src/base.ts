@@ -1,19 +1,19 @@
 import { TEMPLATE, IC_PREFIX, IC_VIEW_PREFIX, DEFAULT_OPTIONS } from './constants';
+import { ImageCropperCaches, ImageCropperOption, InputId, ImageCropperEvent, HTMLInputEvent, ImageCropperFile, ImageOptions } from './types';
 
 export abstract class ImageCropperBase {
-  protected readonly _instances: any = {};
-  protected readonly _caches: any = {};
-  protected readonly _options: any = {};
-  protected readonly _inputId: any = null;
-  protected readonly _events: any = [];
-  protected _file: any = null;
-  protected _imageOptions: any = {};
+  protected readonly _caches: ImageCropperCaches = {};
+  protected readonly _options!: ImageCropperOption;
+  protected readonly _inputId!: InputId;
+  protected readonly _events: ImageCropperEvent[] = [];
+  protected _file: ImageCropperFile = null;
+  protected _imageOptions: ImageOptions = {} as ImageOptions;
 
-  constructor(inputId: any, options: any) {
+  constructor(inputId: InputId, options: Partial<ImageCropperOption>) {
     this._inputId = inputId;
     this._options = {
       ...DEFAULT_OPTIONS,
-      ...options,
+      ...options
     };
   }
 
@@ -31,7 +31,7 @@ export abstract class ImageCropperBase {
 
     this._caches[this._inputId] = this;
 
-    this._drawTemplate(); // vẽ giao diện
+    this._drawTemplate(); // draw ui
     this._addEvents();
     this._listenEvents();
   }
@@ -43,14 +43,14 @@ export abstract class ImageCropperBase {
     var html = TEMPLATE.replace(/@%inputId%@/g, this._inputId)
       .replace(/@%icId%@/g, IC_PREFIX + this._inputId)
       .replace(/@%icViewId%@/g, IC_VIEW_PREFIX + this._inputId)
-      .replace(/@%width%@/g, this._options.width)
-      .replace(/@%height%@/g, this._options.height);
+      .replace(/@%width%@/g, String(this._options.width))
+      .replace(/@%height%@/g, String(this._options.height));
     inputElement!.insertAdjacentHTML('beforebegin', html);
     inputElement!.style.display = 'none';
   }
 
   protected _listenEvents() {
-    this._events.forEach(function (event: any) {
+    this._events.forEach(function(event: any) {
       var element = document.getElementById(event.elementId);
       if (!element) {
         console.log('Element #' + event.elementId + ' not found');
@@ -61,27 +61,27 @@ export abstract class ImageCropperBase {
   }
 
   protected _removeEventsListener() {
-    this._events.events.forEach(function (event: any) {
+    this._events.forEach(event => {
       var element = document.getElementById(event.elementId);
       if (!element) {
         console.log('Element #' + event.elementId + ' not found');
         return;
       }
-      element.removeEventListener(event.name, event.func);
+      element.removeEventListener(event.name, event.func as EventListenerOrEventListenerObject);
     });
   }
 
   protected _addImageChangeEvents() {
-    var inputElement = document.getElementById(this._inputId);
-    var onChangeFile = (event: any) => {
+    // var inputElement = document.getElementById(this._inputId);
+    var onChangeFile = (event: HTMLInputEvent) => {
       const files = event.target.files;
-      this._file = files.length > 0 ? files[0] : null;
+      this._file = files!.length > 0 ? files![0] : null;
       this._changeImage();
     };
     this._events.push({
       elementId: this._inputId,
       name: 'change',
-      func: onChangeFile,
+      func: onChangeFile
     });
   }
 

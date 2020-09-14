@@ -8,7 +8,9 @@
   "typings": "index.d.ts",
   "scripts": {
     "build": "rollup -c rollup.config.ts",
-    "start": "rollup -c rollup.config.ts -w"
+    "start": "rollup -c rollup.config.ts -w",
+    "test": "jest --coverage",
+    "test:watch": "jest --coverage --watch"
   },
   "author": "Dong <dongnguyenvie@gmail.com>",
   "license": "MIT",
@@ -25,5 +27,36 @@
     "rollup-plugin-sourcemaps": "^0.6.2",
     "rollup-plugin-typescript2": "^0.27.2",
     "typescript": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.13",
+    "jest": "^26.4.2",
+    "jest-config": "^26.4.2",
+    "ts-jest": "^26.3.0"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testEnvironment": "jsdom",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
+    "collectCoverageFrom": [
+      "src/image-cropper.{js,ts}"
+    ],
+    "moduleNameMapper": {
+      "\\.(scss|jpg|png)$": "<rootDir>/__mocks__/styleMock.ts"
+    },
+    "globals": {
+      "window": {}
+    }
   }
 }
