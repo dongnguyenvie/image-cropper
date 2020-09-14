@@ -1,0 +1,10 @@
+/examples
+/node_modules
+/src
+/test
+/package-lock.json
+/yarn.lock
+/coverage
+/__mocks__
+/rollup.config.ts
+/tsconfig.json

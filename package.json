@@ -1,11 +1,15 @@
 {
-  "name": "image-cropper",
-  "version": "1.0.0",
+  "name": "@dongnguyen/image-cropper",
+  "version": "1.0.2",
   "description": "",
   "keywords": [],
   "main": "dist/image-cropper.umd.js",
   "module": "dist/image-cropper.es5.js",
-  "typings": "index.d.ts",
+  "typings": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dongnguyenvie/image-cropper"
+  },
   "scripts": {
     "build": "rollup -c rollup.config.ts",
     "start": "rollup -c rollup.config.ts -w",
