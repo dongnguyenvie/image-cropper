@@ -11,5 +11,36 @@ export const TEMPLATE =
 
 export const DEFAULT_OPTIONS = {
   width: 200,
-  height: 200,
+  height: 200
+};
+
+export const deepClone = <T = any>(val: T): T => {
+  return JSON.parse(JSON.stringify(val));
+};
+
+export const zoom = {
+  max: 5,
+  min: 1,
+  step: 1
+};
+
+export const getEmptyImageProperties = () => {
+  return {
+    width: 0,
+    height: 0,
+    size: 0
+  };
+};
+
+export const getEmptyPosition = (imageBoxWidth: number, imageBoxHeight: number) => {
+  return {
+    x: 0,
+    y: 0,
+    minWidth: 1,
+    size: {
+      ratio: 1,
+      width: imageBoxWidth,
+      height: imageBoxHeight
+    }
+  };
 };

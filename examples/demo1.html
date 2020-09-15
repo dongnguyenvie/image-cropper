@@ -19,11 +19,15 @@
         </form>
       </div>
     </div>
+    <button id="destroy">destroy</button>
   </body>
-  <link href="../dist//image-cropper.umd.css" rel="stylesheet" type="text/css" />
+  <link href="../dist/image-cropper.umd.css" rel="stylesheet" type="text/css" />
   <script src="../dist/image-cropper.umd.js"></script>
   <script>
-    const imageCropperInstance = new ImageCropper('avatar');
+    const imageCropperInstance = new ImageCropper('avatar', { width: 500});
+    document.getElementById('destroy').addEventListener('click', () => {
+      imageCropperInstance.destroy()
+    })
     window.imageCropperInstance = imageCropperInstance;
   </script>
   <style>

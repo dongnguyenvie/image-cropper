@@ -20,6 +20,7 @@ export interface ImageCropperEvent {
 export interface ImageOptions {
   originWidth: number;
   originHeight: number;
+  orientation: number;
 }
 
 export interface HTMLInputEvent extends Event {
